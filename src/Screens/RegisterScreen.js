@@ -40,7 +40,7 @@ export default function SigninScreen(props) {
         <div>
           <h1>Create Account</h1>
         </div>
-        {loading && <LoadingBox></LoadingBox>}
+        {loading && <LoadingBox />}
         {error && <MessageBox variant="danger">{error} </MessageBox>}
         <div>
           <label htmlFor="email">Name</label>

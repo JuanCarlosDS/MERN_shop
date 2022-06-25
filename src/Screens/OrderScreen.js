@@ -1,4 +1,4 @@
-import Axios from "axios";
+// import Axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,10 +23,10 @@ export default function OrderScreen(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     const addPayPalScript = async () => {
-      const { data } = await Axios.get("/api/config/paypal");
+      // const { data } = await Axios.get("/api/config/paypal");
       const script = document.createElement("script");
       script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_CLIENT_ID}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
@@ -54,7 +54,9 @@ export default function OrderScreen(props) {
   };
 
   return loading ? (
-    <LoadingBox></LoadingBox>
+    <div className="row center">
+      <LoadingBox />
+    </div>
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
@@ -98,7 +100,7 @@ export default function OrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
+              <div className="card soft-bg card-body">
                 <h2>Order Items</h2>
                 <ul>
                   {order.orderItems.map((item) => (
@@ -165,7 +167,9 @@ export default function OrderScreen(props) {
               {!order.isPaid && (
                 <li>
                   {!sdkReady ? (
-                    <LoadingBox></LoadingBox>
+                    <div className="row center">
+                      <LoadingBox />
+                    </div>
                   ) : (
                     <>
                       {errorPay && (
