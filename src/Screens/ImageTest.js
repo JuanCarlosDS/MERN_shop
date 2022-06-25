@@ -109,8 +109,8 @@ function init(node, images) {
   root.scene.add(light2);
 
   // width and height for the THREE.PlaneGeometry that will be used for the two slides
-  var width = 50;
-  var height = 50;
+  var width = 30;
+  var height = 30;
 
   // create a timeline for the two transitions
   var t1 = gsap.timeline({ paused: true, yoyo: true });
